@@ -7,12 +7,11 @@ import (
 	"net/http"
 
 	"github.com/theNullP0inter/form3-api-library/src/models"
-	"github.com/theNullP0inter/form3-api-library/src/validations"
 )
 
 func (a *Account) Create(acc models.Account) (models.Account, error) {
 
-	a.Validator.RegisterStructValidation(validations.AccountValidation, models.Account{})
+	a.Validator.RegisterStructValidation(AccountValidation, models.Account{})
 	err := a.Validator.Struct(acc)
 
 	if err != nil {
