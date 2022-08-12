@@ -4,12 +4,13 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/google/uuid"
 )
 
-func (a *Account) Delete(id uuid.UUID) error {
-	res, err := a.Client.MakeHTTPDeleteRequest(a.BasePath() + "/" + id.String())
+func (a *Account) Delete(id uuid.UUID, version int64) error {
+	res, err := a.Client.MakeHTTPDeleteRequest(a.BasePath() + "/" + id.String() + "?version=" + strconv.Itoa(int(version)))
 
 	if err != nil {
 		return err

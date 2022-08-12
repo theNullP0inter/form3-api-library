@@ -8,7 +8,7 @@ type Account struct {
 	Attributes     *AccountAttributes    `json:"attributes,omitempty"`
 	ID             uuid.UUID             `json:"id,omitempty"`
 	OrganisationID uuid.UUID             `json:"organisation_id,omitempty"`
-	Type           string                `json:"type,omitempty"`
+	Type           string                `json:"type"`
 	Version        int64                 `json:"version,omitempty"`
 	Relationships  *AccountRelationships `json:"relationships,omitempty"`
 }

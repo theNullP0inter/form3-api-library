@@ -27,7 +27,7 @@ func NewForm3Client(cfg *common.Config) *Form3Client {
 	c.Account = &account.Account{
 		Client: c.client,
 		BasePath: func() string {
-			return fmt.Sprintf("%s/%s/organisation/accounts/", cfg.GetBaseUrl(), AccountsAPIVersion)
+			return fmt.Sprintf("%s/%s/organisation/accounts", cfg.GetBaseUrl(), AccountsAPIVersion)
 		},
 		Validator: validator.New(),
 	}

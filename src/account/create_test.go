@@ -14,6 +14,7 @@ import (
 )
 
 var MockAccount = models.Account{
+	Type: "accounts",
 	Attributes: &models.AccountAttributes{
 		Country:       "GB",
 		BankIDCode:    "GBDSC",

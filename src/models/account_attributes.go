@@ -12,7 +12,7 @@ type AccountAttributes struct {
 	Country                 string   `json:"country,omitempty"`
 	Iban                    string   `json:"iban,omitempty"`
 	JointAccount            bool     `json:"joint_account,omitempty"`
-	Name                    []string `json:"name,omitempty"`
+	Name                    []string `json:"name,omitempty", validate:"required"`
 	SecondaryIdentification string   `json:"secondary_identification,omitempty" validate:"max=140"`
 	Status                  string   `json:"status,omitempty"`
 	Switched                bool     `json:"switched,omitempty"`
