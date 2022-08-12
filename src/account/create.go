@@ -23,10 +23,7 @@ func (a *Account) Create(acc models.Account) (models.Account, error) {
 	}{
 		Data: acc,
 	}
-	reqData, err := json.Marshal(req)
-	if err != nil {
-		return models.Account{}, err
-	}
+	reqData, _ := json.Marshal(req)
 
 	res, err := a.Client.MakeHTTPPostRequest(reqData, a.BasePath())
 
