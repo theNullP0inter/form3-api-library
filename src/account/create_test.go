@@ -40,10 +40,6 @@ func TestCreateAccountWithInvalidData(t *testing.T) {
 
 }
 
-func TestCreateAccountWithRequestError(t *testing.T) {
-
-}
-
 func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 	mockServer := httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusBadRequest)
