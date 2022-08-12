@@ -1,4 +1,4 @@
-package account
+package e2e
 
 import (
 	"testing"
