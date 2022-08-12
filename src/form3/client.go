@@ -2,7 +2,6 @@ package form3
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/go-playground/validator"
 	"github.com/theNullP0inter/form3-api-library/src/account"
@@ -23,10 +22,7 @@ type Form3Client struct {
 func NewForm3Client(cfg *common.Config) *Form3Client {
 
 	c := &Form3Client{}
-	c.client = &common.Client{
-		Config:     cfg,
-		HttpClient: &http.Client{},
-	}
+	c.client = common.NewClient(cfg)
 
 	c.Account = &account.Account{
 		Client: c.client,

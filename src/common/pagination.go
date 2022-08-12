@@ -10,7 +10,7 @@ type Links struct {
 	Last  *string `json:"last,omitempty"`
 	Next  *string `json:"next,omitempty"`
 	Prev  *string `json:"prev,omitempty"`
-	Self  *string `json:"self"`
+	Self  *string `json:"self,omitempty"`
 }
 
 func NewPagination(page int, size int) Pagination {

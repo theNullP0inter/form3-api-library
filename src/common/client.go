@@ -20,18 +20,29 @@ func CreateHTTPRequest(c *Client, httpMethod string, data []byte, url string) (*
 }
 
 type Client struct {
-	Config     *Config
-	HttpClient *http.Client
+	Config             *Config
+	HttpClient         *http.Client
+	HttpRequestHandler func(c *Client, httpMethod string, data []byte, url string) (*http.Response, error)
 }
 
 func (c *Client) MakeHTTPPostRequest(req []byte, url string) (*http.Response, error) {
-	return CreateHTTPRequest(c, http.MethodPost, req, url)
+	return c.HttpRequestHandler(c, http.MethodPost, req, url)
 }
 
 func (c *Client) MakeHTTPGetRequest(url string) (*http.Response, error) {
-	return CreateHTTPRequest(c, http.MethodGet, nil, url)
+	return c.HttpRequestHandler(c, http.MethodGet, nil, url)
 }
 
 func (c *Client) MakeHTTPDeleteRequest(url string) (*http.Response, error) {
-	return CreateHTTPRequest(c, http.MethodDelete, nil, url)
+	return c.HttpRequestHandler(c, http.MethodDelete, nil, url)
+}
+
+func NewClient(cfg *Config) *Client {
+
+	return &Client{
+		Config:             cfg,
+		HttpClient:         &http.Client{},
+		HttpRequestHandler: CreateHTTPRequest,
+	}
+
 }
