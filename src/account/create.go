@@ -7,11 +7,17 @@ import (
 	"net/http"
 
 	"github.com/theNullP0inter/form3-api-library/src/models"
+	"github.com/theNullP0inter/form3-api-library/src/validations"
 )
 
 func (a *Account) Create(acc models.Account) (models.Account, error) {
 
-	// TODO: add validators
+	a.Validator.RegisterStructValidation(validations.AccountValidation, models.Account{})
+	err := a.Validator.Struct(acc)
+
+	if err != nil {
+		return models.Account{}, err
+	}
 
 	req := struct {
 		Data models.Account `json:"data"`

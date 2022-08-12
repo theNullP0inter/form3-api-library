@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/go-playground/validator"
 	"github.com/theNullP0inter/form3-api-library/src/account"
 	"github.com/theNullP0inter/form3-api-library/src/common"
 )
@@ -32,6 +33,7 @@ func NewForm3Client(cfg *common.Config) *Form3Client {
 		BasePath: func() string {
 			return fmt.Sprintf("%s/%s/organisation/accounts/", cfg.GetBaseUrl(), AccountsAPIVersion)
 		},
+		Validator: validator.New(),
 	}
 
 	return c
