@@ -1,18 +1,16 @@
-name: Tester
+name: Unit Test on PR
 
 on:
-  push:
-    branches: [ master, ]
   pull_request:
     branches: [ master, ]
 
 jobs:
 
   build:
-    name: Build & Test
+    name: Unit Test
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.13
+      - name: Set up Go
         uses: actions/setup-go@v1
         with:
           go-version: 1.13
@@ -25,9 +23,6 @@ jobs:
         run: |
           go get -v -t -d ./...
     
-      - name: Build
-        run: go build -v .
-
       - name: Test
         run: go test ./...
       

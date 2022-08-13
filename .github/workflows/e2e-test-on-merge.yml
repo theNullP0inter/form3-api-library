@@ -1,0 +1,19 @@
+name: E2E Test on merge
+
+on:
+  push:
+    branches: [ master, ]
+
+jobs:
+
+  build:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run E2E tests
+        run: |
+          docker-compose up --build --exit-code-from form3-lib-tester
+      

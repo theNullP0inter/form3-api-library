@@ -21,6 +21,7 @@ services:
       - DATABASE-PASSWORD=123
     ports:
       - 8080:8080
+    
   postgresql:
     image: postgres:9.5-alpine
     healthcheck:
@@ -38,7 +39,6 @@ services:
   form3-lib-tester:
     image: form3-lib-tester
     container_name: form3-lib-tester
-    restart: on-failure
     build:
       context: .
       dockerfile: test.Dockerfile
@@ -46,6 +46,8 @@ services:
       - accountapi
     environment:
       - RUN_E2E=True
+    volumes:
+      - ./:/app
 
   vault:
     image: vault:1.6.3
