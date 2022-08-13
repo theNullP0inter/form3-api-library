@@ -40,7 +40,7 @@ func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 
 	_, err := service.Create(MockAccount)
 	assert.NotNil(t, err)
-	assert.Equal(t, "Failed to create with http code 400", err.Error())
+	assert.Equal(t, common.ErrBadRequest, err)
 }
 
 func TestCreateAccountSuccess(t *testing.T) {

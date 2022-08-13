@@ -28,7 +28,7 @@ func TestFetchAccountWithWrongHttpStatus(t *testing.T) {
 	accID, _ := uuid.Parse(MockAccountJsonID)
 	_, err := service.Fetch(accID)
 	assert.NotNil(t, err)
-	assert.Equal(t, "Failed to fetch with http code 400", err.Error())
+	assert.Equal(t, common.ErrBadRequest, err)
 }
 
 func TestFetchAccountSuccess(t *testing.T) {
