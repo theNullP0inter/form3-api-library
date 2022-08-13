@@ -18,17 +18,17 @@ func CreateHTTPRequest(c *Client, httpMethod string, data []byte, url string) (*
 	res, err := c.HttpClient.Do(req)
 
 	if err != nil {
-		return nil, err
+		return res, err
 	}
 
 	switch res.StatusCode {
 	case http.StatusNotFound:
-		return nil, ErrNotFound
+		return res, ErrNotFound
 
 	case http.StatusBadRequest:
-		return nil, ErrBadRequest
+		return res, ErrBadRequest
 	case http.StatusInternalServerError:
-		return nil, ErrInternal
+		return res, ErrInternal
 
 	}
 
