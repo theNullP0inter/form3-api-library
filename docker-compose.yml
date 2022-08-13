@@ -35,6 +35,18 @@ services:
     volumes:
       - ./scripts/db:/docker-entrypoint-initdb.d/
 
+  form3-lib-tester:
+    image: form3-lib-tester
+    container_name: form3-lib-tester
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: test.Dockerfile
+    depends_on:
+      - accountapi
+    environment:
+      - RUN_E2E=True
+
   vault:
     image: vault:1.6.3
     environment:

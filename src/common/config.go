@@ -1,7 +1,7 @@
 package common
 
 const (
-	TestEndPoint = "http://localhost:8080"
+	TestEndPoint = "http://accountapi:8080"
 	LiveEndPoint = "https://api.form3.tech"
 )
 

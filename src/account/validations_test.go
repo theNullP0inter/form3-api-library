@@ -9,7 +9,7 @@ import (
 )
 
 func TestAccountValidation(t *testing.T) {
-	acc := &models.Account{}
+	acc := &models.Account{Type: "accounts"}
 
 	v := validator.New()
 	v.RegisterStructValidation(AccountValidation, models.Account{})

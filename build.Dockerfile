@@ -10,11 +10,13 @@ ENV CGO_ENABLED=0
 WORKDIR /app
 COPY ./ ./
 RUN go get -d -v ./...
-CMD [ "go", "test", "./..." ]
+RUN go build \
+    -installsuffix 'static' \
+    -o /form3 .
 
-# FROM scratch AS final
-# COPY --from=builder /user/group /user/passwd /etc/
-# COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-# COPY --from=builder /form3 /form3
-# USER nobody:nobody
-# ENTRYPOINT ["/form3"]
+FROM scratch AS final
+COPY --from=builder /user/group /user/passwd /etc/
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /form3 /form3
+USER nobody:nobody
+ENTRYPOINT ["/form3"]

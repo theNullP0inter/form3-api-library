@@ -1,6 +1,7 @@
 package e2e
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -22,6 +23,9 @@ var MockAccount = models.Account{
 }
 
 func TestAccountE2E(t *testing.T) {
+	if os.Getenv("RUN_E2E") == "" {
+		t.Skip("Skipping E2E tests")
+	}
 
 	form3_cli := form3.NewForm3Client(&common.Config{
 		Live: false,
