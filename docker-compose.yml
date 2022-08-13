@@ -21,6 +21,7 @@ services:
       - DATABASE-PASSWORD=123
     ports:
       - 8080:8080
+    
   postgresql:
     image: postgres:9.5-alpine
     healthcheck:
@@ -34,6 +35,19 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - ./scripts/db:/docker-entrypoint-initdb.d/
+
+  form3-lib-tester:
+    image: form3-lib-tester
+    container_name: form3-lib-tester
+    build:
+      context: .
+      dockerfile: test.Dockerfile
+    depends_on:
+      - accountapi
+    environment:
+      - RUN_E2E=True
+    volumes:
+      - ./:/app
 
   vault:
     image: vault:1.6.3
