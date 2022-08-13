@@ -21,6 +21,7 @@ var MockAccount = models.Account{
 		Bic:           "NWBKGB22",
 		BankID:        "123456",
 		AccountNumber: "12345678",
+		Name:          []string{"Jon", "Snow"},
 	},
 }
 
