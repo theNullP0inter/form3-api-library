@@ -17,7 +17,9 @@ func TestAccountValidation(t *testing.T) {
 	err := v.Struct(acc)
 	assert.Equal(t, err.Error(), "Key: 'Account.attributes' Error:Field validation for 'attributes' failed on the 'attributes' tag")
 
-	acc.Attributes = &models.AccountAttributes{}
+	acc.Attributes = &models.AccountAttributes{
+		Name: []string{"Jon", "Snow"},
+	}
 	err = v.Struct(acc)
 	assert.Equal(t,
 		"Key: 'Account.country' Error:Field validation for 'country' failed on the 'supported_country' tag",
