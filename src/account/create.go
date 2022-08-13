@@ -11,13 +11,6 @@ import (
 
 func (a *Account) Create(acc models.Account) (models.Account, error) {
 
-	a.Validator.RegisterStructValidation(AccountValidation, models.Account{})
-	err := a.Validator.Struct(acc)
-
-	if err != nil {
-		return models.Account{}, err
-	}
-
 	req := struct {
 		Data models.Account `json:"data"`
 	}{

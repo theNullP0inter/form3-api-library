@@ -1,7 +1,6 @@
 package account
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -23,23 +22,6 @@ var MockAccount = models.Account{
 		AccountNumber: "12345678",
 		Name:          []string{"Jon", "Snow"},
 	},
-}
-
-func TestCreateAccountWithInvalidData(t *testing.T) {
-
-	service := &Account{
-		Client: &common.Client{},
-		BasePath: func() string {
-			return fmt.Sprintf("https://example.com")
-		},
-		Validator: validator.New(),
-	}
-
-	_, err := service.Create(models.Account{})
-	assert.NotNil(t, err)
-	_, ok := err.(validator.ValidationErrors)
-	assert.True(t, ok)
-
 }
 
 func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
