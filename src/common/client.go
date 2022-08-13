@@ -15,7 +15,24 @@ func CreateHTTPRequest(c *Client, httpMethod string, data []byte, url string) (*
 		return nil, err
 	}
 	req.Header.Add("Content-Type", CONTENT_TYPE_JSON)
-	return c.HttpClient.Do(req)
+	res, err := c.HttpClient.Do(req)
+
+	if err != nil {
+		return res, err
+	}
+
+	switch res.StatusCode {
+	case http.StatusNotFound:
+		return res, ErrNotFound
+
+	case http.StatusBadRequest:
+		return res, ErrBadRequest
+	case http.StatusInternalServerError:
+		return res, ErrInternal
+
+	}
+
+	return res, err
 
 }
 

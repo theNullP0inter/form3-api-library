@@ -27,7 +27,7 @@ func TestAccountListWithWrongHttpStatus(t *testing.T) {
 
 	_, err := service.List(common.NewPagination(1, 10), map[string]string{})
 	assert.NotNil(t, err)
-	assert.Equal(t, "Failed to fetch with http code 400", err.Error())
+	assert.Equal(t, common.ErrBadRequest, err)
 }
 
 func TestAccountListSuccess(t *testing.T) {

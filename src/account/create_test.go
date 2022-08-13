@@ -1,7 +1,6 @@
 package account
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -25,23 +24,6 @@ var MockAccount = models.Account{
 	},
 }
 
-func TestCreateAccountWithInvalidData(t *testing.T) {
-
-	service := &Account{
-		Client: &common.Client{},
-		BasePath: func() string {
-			return fmt.Sprintf("https://example.com")
-		},
-		Validator: validator.New(),
-	}
-
-	_, err := service.Create(models.Account{})
-	assert.NotNil(t, err)
-	_, ok := err.(validator.ValidationErrors)
-	assert.True(t, ok)
-
-}
-
 func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 	mockServer := httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusBadRequest)
@@ -58,7 +40,7 @@ func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 
 	_, err := service.Create(MockAccount)
 	assert.NotNil(t, err)
-	assert.Equal(t, "Failed to create with http code 400", err.Error())
+	assert.Equal(t, common.ErrBadRequest, err)
 }
 
 func TestCreateAccountSuccess(t *testing.T) {

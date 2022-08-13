@@ -28,7 +28,7 @@ func TestDeleteAccountWithWrongHttpStatus(t *testing.T) {
 	accID, _ := uuid.Parse(MockAccountJsonID)
 	err := service.Delete(accID, 1)
 	assert.NotNil(t, err)
-	assert.Equal(t, "Failed to delete with http code 400", err.Error())
+	assert.Equal(t, common.ErrBadRequest, err)
 }
 
 func TestDeleteAccountSuccess(t *testing.T) {
