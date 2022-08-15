@@ -41,7 +41,7 @@ CI/CD is managed using github-actions
 
 * `e2e-test-on-merge` runs e2e and unit tests when a PR is merged to the master branch 
 
-* `build-on-release` builds a docker image and pushes it to `ghcr` when a new release is made on github with tags in semantic versioning. => [ This is not relevant for an API library]
+* `build-on-release` builds a docker image and pushes it to `ghcr` when a new release is made on github with tags in semantic versioning. => [ This is not relevant for an API library and will not work without a main module]
 
 
 ## Getting Started with the library
