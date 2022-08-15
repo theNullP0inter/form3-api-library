@@ -5,7 +5,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/go-playground/validator"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/theNullP0inter/form3-api-library/src/common"
@@ -18,11 +17,10 @@ func TestAccountListWithWrongHttpStatus(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	_, err := service.List(common.NewPagination(1, 10), map[string]string{})
@@ -43,11 +41,10 @@ func TestAccountListSuccess(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	accs, err := service.List(common.NewPagination(1, 10), map[string]string{"foo": "bar"})

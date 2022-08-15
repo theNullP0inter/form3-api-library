@@ -11,7 +11,7 @@ import (
 )
 
 func TestNewClient(t *testing.T) {
-	cli := NewClient(&Config{Live: false})
+	cli := NewClient(MockConfigTest)
 	assert.IsType(t, &Client{}, cli)
 }
 
@@ -33,7 +33,7 @@ func TestCreateHttpRequest(t *testing.T) {
 	defer testServer.Close()
 
 	cli := &Client{
-		Config:             &Config{Live: false},
+		Config:             MockConfigTest,
 		HttpClient:         &http.Client{},
 		HttpRequestHandler: CreateHTTPRequest,
 	}
@@ -51,7 +51,7 @@ func TestClientPost(t *testing.T) {
 	reqUrl := "http://example.com/"
 
 	cli := &Client{
-		Config:     &Config{Live: false},
+		Config:     MockConfigTest,
 		HttpClient: &http.Client{},
 		HttpRequestHandler: func(c *Client, httpMethod string, data []byte, url string) (*http.Response, error) {
 			assert.Equal(t, http.MethodPost, httpMethod)
@@ -70,7 +70,7 @@ func TestClientGet(t *testing.T) {
 	reqUrl := "http://example.com/"
 
 	cli := &Client{
-		Config:     &Config{Live: false},
+		Config:     MockConfigTest,
 		HttpClient: &http.Client{},
 		HttpRequestHandler: func(c *Client, httpMethod string, data []byte, url string) (*http.Response, error) {
 			assert.Equal(t, http.MethodGet, httpMethod)
@@ -89,7 +89,7 @@ func TestClientDelete(t *testing.T) {
 	reqUrl := "http://example.com/"
 
 	cli := &Client{
-		Config:     &Config{Live: false},
+		Config:     MockConfigTest,
 		HttpClient: &http.Client{},
 		HttpRequestHandler: func(c *Client, httpMethod string, data []byte, url string) (*http.Response, error) {
 			assert.Equal(t, http.MethodDelete, httpMethod)

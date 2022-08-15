@@ -2,33 +2,16 @@
 
 golang library for using Form3 APIs ( only account service )
 
-## Libraries used
 
-* [go-playground/validator](https://github.com/go-playground/validator)
+Name: Nikhil Allamsetti
+
+## Libraries used
 
 * [google/uuid](https://github.com/google/uuid)
 
 * [stretchr/testify](https://github.com/stretchr/testify)
 
 * [jarcoal/httpmock](https://github.com/jarcoal/httpmock)
-
-
-## Project setup
-
-```
-\_ src
-    \_ account           # client for account service
-    \_ common            # common clients and utils
-    \_ e2e               # end to end tests
-    \_ form3             # client to combine all services
-    \_ models            # all models
-\_ scripts
-    \_ db                # init scripts for postgres
-\_ .github
-    \_ workflows         # CI workflows using github actions
-    \_ ISSUE_TEMPLATE    # Templates to raise issues on github
-
-```
 
 
 ## Testing the library 
@@ -65,8 +48,10 @@ CI/CD is managed using github-actions
 
 ```
 
+# Initialize your client
 form3_cli := form3.NewForm3Client(&common.Config{
-    Live: os.Getenv("ENV") == "production",
+    Live: os.Getenv("ENV") == "production", # API endpoint will depend on this
+    HttpTimeout: 10 * time.Second, # Timeout for Http client
 })
 
 # To Create an account
@@ -83,3 +68,34 @@ err = form3_cli.Account.Delete(accID, accVersion)
 
 
 ```
+
+## Project setup
+
+```
+\_ src
+    \_ account           # client for account service
+    \_ common            # common clients and utils
+    \_ e2e               # end to end tests
+    \_ form3             # client to combine all services
+    \_ models            # all models
+\_ scripts
+    \_ db                # init scripts for postgres
+\_ .github
+    \_ workflows         # CI workflows using github actions
+    \_ ISSUE_TEMPLATE    # Templates to raise issues on github
+
+```
+
+* Since This is an API Library, we dont need any client side validation of requests
+
+* There is no authentication implemented. To add authentication scheme, `API_KEY` should be added to `common.Config`
+
+
+## Further Improvements for production release
+
+* Error handling: Handle for all error codes [here](https://api-docs.form3.tech/api.html#introduction-and-api-conventions-errors-and-status-codes).
+
+* Go docs: Should add comments in GoDoc format
+
+* Change the test API endipoint in `common/config.go` to the sandbox environment. Currently it's pointed to the fake service on docker-compose
+

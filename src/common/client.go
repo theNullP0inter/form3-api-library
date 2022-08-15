@@ -57,8 +57,10 @@ func (c *Client) MakeHTTPDeleteRequest(url string) (*http.Response, error) {
 func NewClient(cfg *Config) *Client {
 
 	return &Client{
-		Config:             cfg,
-		HttpClient:         &http.Client{},
+		Config: cfg,
+		HttpClient: &http.Client{
+			Timeout: cfg.HttpTimeout,
+		},
 		HttpRequestHandler: CreateHTTPRequest,
 	}
 

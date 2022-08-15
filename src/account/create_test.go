@@ -5,24 +5,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/go-playground/validator"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/theNullP0inter/form3-api-library/src/common"
-	"github.com/theNullP0inter/form3-api-library/src/models"
 )
-
-var MockAccount = models.Account{
-	Type: "accounts",
-	Attributes: &models.AccountAttributes{
-		Country:       "GB",
-		BankIDCode:    "GBDSC",
-		Bic:           "NWBKGB22",
-		BankID:        "123456",
-		AccountNumber: "12345678",
-		Name:          []string{"Jon", "Snow"},
-	},
-}
 
 func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 	mockServer := httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -31,11 +17,10 @@ func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	_, err := service.Create(MockAccount)
@@ -51,11 +36,10 @@ func TestCreateAccountSuccess(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	acc, err := service.Create(MockAccount)
