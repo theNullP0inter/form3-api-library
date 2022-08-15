@@ -17,7 +17,7 @@ func TestDeleteAccountWithWrongHttpStatus(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
@@ -38,7 +38,7 @@ func TestDeleteAccountSuccess(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},

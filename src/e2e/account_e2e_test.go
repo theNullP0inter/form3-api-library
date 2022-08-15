@@ -27,9 +27,7 @@ func TestAccountE2E(t *testing.T) {
 		t.Skip("Skipping E2E tests")
 	}
 
-	form3_cli := form3.NewForm3Client(&common.Config{
-		Live: false,
-	})
+	form3_cli := form3.NewForm3Client(common.MockConfigTest)
 
 	acc, err := form3_cli.Account.Create(MockAccount)
 

@@ -8,9 +8,7 @@ import (
 )
 
 func TestForm3Client(t *testing.T) {
-	cli := NewForm3Client(&common.Config{
-		Live: false,
-	})
+	cli := NewForm3Client(common.MockConfigTest)
 
 	assert.IsType(t, &Form3Client{}, cli)
 

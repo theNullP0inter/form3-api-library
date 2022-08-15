@@ -66,6 +66,7 @@ CI/CD is managed using github-actions
 # Initialize your client
 form3_cli := form3.NewForm3Client(&common.Config{
     Live: os.Getenv("ENV") == "production", # API endpoint will depend on this
+    HttpTimeout: 10 * time.Second, # Timeout for Http client
 })
 
 # To Create an account

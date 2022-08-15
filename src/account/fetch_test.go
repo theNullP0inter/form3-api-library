@@ -17,7 +17,7 @@ func TestFetchAccountWithWrongHttpStatus(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
@@ -38,7 +38,7 @@ func TestFetchAccountSuccess(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},

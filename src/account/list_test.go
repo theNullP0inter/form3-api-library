@@ -17,7 +17,7 @@ func TestAccountListWithWrongHttpStatus(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
@@ -41,7 +41,7 @@ func TestAccountListSuccess(t *testing.T) {
 	}))
 
 	service := &Account{
-		Client: common.NewClient(&common.Config{Live: false}),
+		Client: common.NewClient(common.MockConfigTest),
 		BasePath: func() string {
 			return mockServer.URL
 		},
