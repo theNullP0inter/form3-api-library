@@ -5,7 +5,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/go-playground/validator"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/theNullP0inter/form3-api-library/src/common"
@@ -35,7 +34,6 @@ func TestCreateAccountWithWrongHttpStatus(t *testing.T) {
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	_, err := service.Create(MockAccount)
@@ -55,7 +53,6 @@ func TestCreateAccountSuccess(t *testing.T) {
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	acc, err := service.Create(MockAccount)

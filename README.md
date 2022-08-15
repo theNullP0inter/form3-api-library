@@ -4,8 +4,6 @@ golang library for using Form3 APIs ( only account service )
 
 ## Libraries used
 
-* [go-playground/validator](https://github.com/go-playground/validator)
-
 * [google/uuid](https://github.com/google/uuid)
 
 * [stretchr/testify](https://github.com/stretchr/testify)
@@ -65,8 +63,9 @@ CI/CD is managed using github-actions
 
 ```
 
+# Initialize your client
 form3_cli := form3.NewForm3Client(&common.Config{
-    Live: os.Getenv("ENV") == "production",
+    Live: os.Getenv("ENV") == "production", # API endpoint will depend on this
 })
 
 # To Create an account

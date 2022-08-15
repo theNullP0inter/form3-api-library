@@ -5,7 +5,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/go-playground/validator"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/theNullP0inter/form3-api-library/src/common"
@@ -22,7 +21,6 @@ func TestDeleteAccountWithWrongHttpStatus(t *testing.T) {
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	accID, _ := uuid.Parse(MockAccountJsonID)
@@ -44,7 +42,6 @@ func TestDeleteAccountSuccess(t *testing.T) {
 		BasePath: func() string {
 			return mockServer.URL
 		},
-		Validator: validator.New(),
 	}
 
 	accID, _ := uuid.Parse(MockAccountJsonID)
