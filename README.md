@@ -2,6 +2,9 @@
 
 golang library for using Form3 APIs ( only account service )
 
+
+Name: Nikhil Allamsetti
+
 ## Libraries used
 
 * [google/uuid](https://github.com/google/uuid)
@@ -27,7 +30,6 @@ golang library for using Form3 APIs ( only account service )
     \_ ISSUE_TEMPLATE    # Templates to raise issues on github
 
 ```
-
 
 ## Testing the library 
 
@@ -83,3 +85,12 @@ err = form3_cli.Account.Delete(accID, accVersion)
 
 
 ```
+
+## Further Improvements for production release
+
+* Error handling: Handle for all error codes [here](https://api-docs.form3.tech/api.html#introduction-and-api-conventions-errors-and-status-codes).
+
+* Go docs: Should add comments in GoDoc format
+
+* Change the test API endipoint in `common/config.go` to the sandbox environment. Currently it's pointed to the fake service on docker-compose
+
