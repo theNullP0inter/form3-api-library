@@ -14,23 +14,6 @@ Name: Nikhil Allamsetti
 * [jarcoal/httpmock](https://github.com/jarcoal/httpmock)
 
 
-## Project setup
-
-```
-\_ src
-    \_ account           # client for account service
-    \_ common            # common clients and utils
-    \_ e2e               # end to end tests
-    \_ form3             # client to combine all services
-    \_ models            # all models
-\_ scripts
-    \_ db                # init scripts for postgres
-\_ .github
-    \_ workflows         # CI workflows using github actions
-    \_ ISSUE_TEMPLATE    # Templates to raise issues on github
-
-```
-
 ## Testing the library 
 
 Clone the repository: `git clone https://github.com/theNullP0inter/form3-api-library.git`
@@ -85,6 +68,28 @@ err = form3_cli.Account.Delete(accID, accVersion)
 
 
 ```
+
+## Project setup
+
+```
+\_ src
+    \_ account           # client for account service
+    \_ common            # common clients and utils
+    \_ e2e               # end to end tests
+    \_ form3             # client to combine all services
+    \_ models            # all models
+\_ scripts
+    \_ db                # init scripts for postgres
+\_ .github
+    \_ workflows         # CI workflows using github actions
+    \_ ISSUE_TEMPLATE    # Templates to raise issues on github
+
+```
+
+* Since This is an API Library, we dont need any client side validation of requests
+
+* There is no authentication implemented. To add authentication scheme, `API_KEY` should be added to `common.Config`
+
 
 ## Further Improvements for production release
 
